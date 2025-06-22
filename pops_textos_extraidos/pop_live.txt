@@ -1,0 +1,80 @@
+ POP - CRIAÇÃO E GERENCIAMENTO DE LIVES 
+ Técnico responsável:  Byron Messias Almeida Vit al 
+ Atualizado por:  Bráulio Ne to 06/09/2024 
+ Criado em:  06/07/2023 
+ Revisado por:  Junior Oliveira 
+ Versão  1.0 
+ Esta  documentação  foi  criada  para  auxiliar  os  técnicos  na  criação  de  gerenciamento  das 
+ transmissões de conteúdos especiais das empresas parceiras. 
+ COMO CRIAR UMA TRANSMISSÃO NO OBS STUDIO 
+ 1.  Abra o software no OBS Studio para iniciar o processo de criação; 
+ 2.  Dentro  do  OBS,  acesse  o  aba  de  “Arquivo”,  logo  após  selecione 
+ “Configurações”; 
+
+ 3.  Estando  na  categoria  de  Configurações,  acesse  a  aba  de  “Transmissão”  e 
+ selecione “YouTube - RTMPS”; 
+
+ 4.  Clique  em  “Usar  chave  de  transmissão  (avançado)”  e  inclua  uma  das 
+ seguintes chaves de transmissão: 
+ Assistência 24 Horas:  bh92-kq0f-m8q6-evex-e9h3 
+ Atendimento:  kyvk-z8r7-04qa-2uvb-730r 
+ Eventos:  01bk-qewk-a9q7-q2p8-bbqe 
+ Recebíveis:  1xxf-sfd9-5kdx-e4zs-c8w4 
+ TaRastreado:  ty5t-a52d-fttj-j7fz-feec 
+ Obs.:  Se  for  necessário  configurar  o  OBS  Studio  a  partir  do  zero,  será  preciso  adicionar 
+ manualmente  todas  as  configurações,  incluindo  cada  chave  ao  criar  um  novo  perfil 
+ individualmente. 
+
+ 5.  Clique  em  “Aplicar”  para  salvar  a  configuração  e  assim  salvar  as  alterações 
+ que  foram  feitas.  Essa  chave  de  transmissão  é  responsável  por  fazer  uma 
+ ligação do OBS com o YouTube Studio, permitindo a transmissão. 
+ 6.  Voltando  para  o  início  do  OBS  Studio,  selecione  o  ícone  para  criação  de  uma 
+ nova fonte, por aqui vamos fazer o vínculo para gerar conteúdo; 
+ 7.  Escreva o nome da fonte que vamos buscar e clique em “OK”; 
+
+ 7.1.  Agora preencha os campos com os seguintes dados. Obs: o endereço URL 
+ pode alterar segundo a live que será apresentada. 
+ Dados de Transmissão: 
+ URL:  https://tv.premiumclube.org.br/assistencia-24-horas 
+ https://tv.premiumclube.org.br/atendimento 
+ https://tv.premiumclube.org.br/eventos 
+ https://tv.premiumclube.org.br/recebiveis 
+ https://tv.tarastreado.com.br/t-i 
+ Largura:  1920 
+ Altura:  1080 
+
+ 8.  Com os dados já completos, inicie a transmissão para continuar o processo no 
+ Youtube; 
+
+ CRIANDO A TRANSMISSÃO NO YOUTUBE STUDIO 
+ 1.  Entre no link do Youtube Studio: 
+ https://studio.youtube.com/channel/UCdrs3H22LkHblE2MmplM2fA 
+ 2.  Acesse a aba de “Conteúdo” com a guia “Ao Vivo”: 
+ 3.  Selecione o botão “Criar” no canto superior direito da tela; 
+
+ 4.  Selecione o botão de “PROGRAMAR TRANSMISSÃO”; 
+ 5.  Selecione o botão “Create New”; 
+ 6.  Em “Criar transmissão”, adicione o título da live com “TELA - (SETOR)” e a 
+ descrição “Gestão à Vista - (SETOR)”. Selecionando também o marcador “Sim, 
+ é para crianças”. Logo após, clique em “Próximo”; 
+
+ 7.  Desmarque a opção “Chat ao vivo” e clique em “Próximo”; 
+
+ 8.  Marque a opção “Não listado” e agende a transmissão sempre 10 minutos 
+ antes do momento exato (exemplo usado às 16:00). Logo após, clique em 
+ “OK”; 
+ 9.  Na  nova  tela,  clique  em  “Selecionar  chave  da  transmissão”  e  selecione  a  chave 
+ correspondente ao setor utilizado; (o exemplo utilizou a chave do atendimento) 
+
+ 10.  Assim  que  colocar  a  chave  de  transmissão,  verifique  o  status  de  conexão, 
+ caso  esteja  como  “Conexão  Excelente”,  aguarde  alguns  segundos  para  liberar 
+ o botão de “Transmitir Ao Vivo”; 
+ 11.  Assim sua live estará em transmissão. Apenas volte e clique em gerar link; 
+
+ 12.  Cole o link no navegador e veja se a transmissão está ocorrendo normalmente; 
+ GERENCIAMENTO DE INCIDENTES - LIVES 
+ Caso  a  live  fique  com  a  tela  totalmente  preta  ou  parcialmente  branca,  basta  ir  nas 
+ fontes  do  OBS  Studio  (como  já  foi  ensinado)  e  clique  em  “Atualizar  o  cache  da  página 
+ atual”. 
+
+
