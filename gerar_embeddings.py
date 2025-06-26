@@ -2,6 +2,7 @@ import os
 import google.generativeai as genai
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
+import chromadb
 
 print("Tentando carregar variáveis do .env...")
 load_dotenv() 
@@ -22,6 +23,7 @@ genai.configure(api_key=API_KEY)
 PASTA_TEXTOS_EXTRAIDOS = "pops_textos_extraidos"
 PASTA_EMBEDDINGS = "pops_chunks_e_embeddings"
 PASTA_CHUNKS_E_EMBEDDINGS = "pops_chunks_e_embeddings"
+PASTA_CHROMADB = "chromadb_data"
 
 def carregar_texto_do_arquivo(caminho_arquivo):
     with open(caminho_arquivo, "r", encoding="utf-8") as f:
@@ -49,6 +51,61 @@ def gerar_embedding_para_chunk(chunk_texto):
         print(f"Erro ao gerar embedding para chunk: {e}")
         return None
     
+def processar_textos_e_salvar_no_chroma(pasta_origem_txt, pasta_chromadb):
+    client = chromadb.PersistentClient(path=pasta_chromadb)
+    collection = client.get_or_create_collection(name="pops_base_conhecimento")
+    print(f"Coleção 'pops_base_conhecimento' ChromaDB pronta.")
+
+    documents = []
+    embeddings_list = []
+    metadatas = []
+    ids = []
+
+    for nome_arquivo_txt in os.listdir(pasta_origem_txt):
+        if nome_arquivo_txt.lower().endswith(".txt"):
+            caminho_txt_completo = os.path.join(pasta_origem_txt, nome_arquivo_txt)
+            print(f"Processando arquivo: {nome_arquivo_txt} para chunking e embedding...")
+
+            texto_completo = carregar_texto_do_arquivo(caminho_txt_completo)
+            chunks = dividir_texto_em_chunks(texto_completo)
+
+            for i, chunk in enumerate(chunks):
+                print(f"  Gerando embedding para chunk {i+1}/{len(chunks)} de '{nome_arquivo_txt}'...")
+                embedding = gerar_embedding_para_chunk(chunk)
+
+                if embedding:
+                    documents.append(chunk) 
+                    embeddings_list.append(embedding) 
+                    metadatas.append({"source": nome_arquivo_txt, "chunk_index": i}) 
+                    ids.append(f"{nome_arquivo_txt}_{i}") 
+                else:
+                    print(f"  Não foi possível gerar embedding para chunk {i+1} de '{nome_arquivo_txt}'. Será ignorado.")
+
+    if documents:
+        print(f"\nAdicionando {len(documents)} chunks ao ChromaDB...")
+        collection.add(
+            documents=documents,
+            embeddings=embeddings_list,
+            metadatas=metadatas,
+            ids=ids
+        )
+        print("Chunks adicionados ao ChromaDB com sucesso!")
+        print(f"Total de chunks na coleção: {collection.count()}")
+    else:
+        print("Nenhum chunk com embedding válido para adicionar ao ChromaDB.")
+
+    return collection 
+
+if __name__ == "__main__":
+    if not os.path.exists(PASTA_TEXTOS_EXTRAIDOS):
+        print(f"Erro: A pasta '{PASTA_TEXTOS_EXTRAIDOS}' não existe. Rode a Etapa 2 primeiro!")
+    else:
+        print(f"Lendo textos de '{PASTA_TEXTOS_EXTRAIDOS}' e salvando no ChromaDB...")
+        
+        pops_collection = processar_textos_e_salvar_no_chroma(PASTA_TEXTOS_EXTRAIDOS, PASTA_CHROMADB)
+        print("\nEtapa de Armazenamento de Embeddings no Banco de Dados Vetorial concluída!")
+
+
 def processar_textos_e_gerar_embeddings(pasta_origem_txt, pasta_destino_chunks):
     """
     Lê os arquivos .txt, divide em chunks e gera embeddings.
