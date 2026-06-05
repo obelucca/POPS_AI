@@ -1,0 +1,55 @@
+# Arquivos de Ambiente
+.env
+
+# Diretórios de ambiente virtual Python
+.venv/
+venv/
+env/
+/bin/
+/include/
+/lib/
+/share/
+__pycache__/
+
+
+# Arquivos de log (se você estiver usando logs explícitos)
+*.log
+logs/
+
+# Arquivos de cache e temporários do Python
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+
+# Arquivos específicos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE (ex: VS Code) - remova se usar outra IDE
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+# Banco de dados vetorial local (ChromaDB)
+chromadb_data/
+
+# Pastas de dados de processamento (ignora conteúdo, mantém as pastas no git através do .gitkeep)
+pops_originais/*
+!pops_originais/.gitkeep
+
+pops_textos_extraidos/*
+!pops_textos_extraidos/.gitkeep
+
+pops_imagens_extraidas/*
+!pops_imagens_extraidas/.gitkeep
+
+# Diretório temporário para uploads do Discord (/addpop)
+temp_files/

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pops-ai-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pops-bot
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chromadb_data:/app/chromadb_data
+    env_file:
+      - ./.env
+    networks:
+      - pops_network
+
+networks:
+  pops_network:
+    driver: bridge
